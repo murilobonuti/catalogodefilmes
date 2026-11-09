@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="description" content="Catálogo de Filmes. Construída com HTML, CSS e JavaScript puro." />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Catálogo de Filmes</title>
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+
+    <body>
+        <header>
+            <h1 class="inicio">Catálogo de Filmes</h1>
+            <p>Explore os filmes em cartaz e favoritos.</p>
+        </header>
+
+        <div class="categorias">
+                <input type="radio" id="c-todos" name="categoria" value="Todos" checked><label for="c-todos">Todos</label>
+                <input type="radio" id="c-acao" name="categoria" value="Ação"><label for="c-acao">Ação</label>
+                <input type="radio" id="c-terror" name="categoria" value="Terror"><label for="c-terror">Terror</label>
+                <input type="radio" id="c-animacao" name="categoria" value="Animação"><label for="c-animacao">Animação</label>
+            </div>
+
+
+        <input type="text" id="pesquisa" placeholder="Pesquisar filme...">
+        <button id="btn-pesquisar">Pesquisar</button>
+        
+        <main id="lista">
+        </main>
+
+        <script src="js/script.js"></script>
+    </body>
+
+    
+</html>

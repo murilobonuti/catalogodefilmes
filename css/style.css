@@ -1,0 +1,50 @@
+ * {
+  font-family: Arial, sans-serif;
+  background: #252323;
+  color: #ffffff;
+  margin: 0;
+  padding: 10px;
+ }
+
+ main {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: 20px;
+}
+
+ .card {
+  background: rgb(54, 54, 54);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.capa {
+    width: 300px;
+    height: 500px;
+}
+
+.info {
+    display: flex;
+    flex-direction: block;
+}
+
+#btn-pesquisar {
+    background-color: #ffffff;
+    color: #000000;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 5px 10px;
+    transition: 0.5s;
+    
+}
+
+#btn-pesquisar:hover {
+    background-color: red;
+}
+
+input[type="text"] {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 200px;
+}
