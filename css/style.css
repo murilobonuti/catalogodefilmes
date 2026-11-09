@@ -18,33 +18,40 @@
   overflow: hidden;
 }
 
-.capa {
-    width: 300px;
-    height: 500px;
-}
-
 .info {
     display: flex;
     flex-direction: block;
 }
 
 #btn-pesquisar {
-    background-color: #ffffff;
-    color: #000000;
+    background-color: #660000;
+    color: #ffffff;
     border: 1px solid #ccc;
     border-radius: 4px;
-    padding: 5px 10px;
+    padding: 5px;
     transition: 0.5s;
-    
+    width: 100px;
+    height: 40px;
 }
 
 #btn-pesquisar:hover {
-    background-color: red;
+    background-color: rgb(185, 12, 12);
 }
 
 input[type="text"] {
     padding: 5px;
-    border: 1px solid #ccc;
+    border: 1px solid #585858;
     border-radius: 4px;
-    width: 200px;
+    width: 350px;
+    height: 30px;
+    margin-left: 10px;
+    font-size: 20px;
+}
+
+.btn-favorito {
+    background-color: #3d3c3c;
+    color: white;
+    height: 60px;
+    width: 100px;
+    border-radius: 12px;
 }

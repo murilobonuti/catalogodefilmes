@@ -14,18 +14,17 @@
             <p>Explore os filmes em cartaz e favoritos.</p>
         </header>
 
-        <div class="categorias">
-                <input type="radio" id="c-todos" name="categoria" value="Todos" checked><label for="c-todos">Todos</label>
-                <input type="radio" id="c-acao" name="categoria" value="Ação"><label for="c-acao">Ação</label>
-                <input type="radio" id="c-terror" name="categoria" value="Terror"><label for="c-terror">Terror</label>
-                <input type="radio" id="c-animacao" name="categoria" value="Animação"><label for="c-animacao">Animação</label>
-                <input type="radio" id="c-ficcao" name="categoria" value="Ficção"><label for="c-ficcao">Ficção</label>
-            </div>
-
-
         <input type="text" id="pesquisa" placeholder="Pesquisar filme...">
         <button id="btn-pesquisar">Pesquisar</button>
-        
+
+        <select id="categoria">
+            <option value="Todas">Todas</option>
+            <option value="Ação">Ação</option>
+            <option value="Terror">Terror</option>
+            <option value="Animação">Animação</option>
+            <option value="Ficção">Ficção</option>
+        </select>
+
         <main id="lista">
         </main>
 
