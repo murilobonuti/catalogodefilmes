@@ -1,32 +1,38 @@
 // [R1]
 const filmes = [
     { id: 1, nome: 'Vingadores: Guerra Infinita', 
-        categoria: 'Ação', descricao: '...', 
+        categoria: 'Ação', descricao: 'A batalha final... Será?', 
         duracao: 154, assistido: true},
     { id: 2, nome: 'Até o Último Homem', 
-        categoria: 'Ação', descricao: '...', 
+        categoria: 'Ação', descricao: 'Um soldado que vai de desvalorizado à herói', 
         duracao: 139, assistido: false},
     { id: 3, nome: 'Zootopia', 
-        categoria: 'Animação', descricao: '...', 
+        categoria: 'Animação', descricao: 'Cidade dos bichos', 
         duracao: 108, assistido: true},
     { id: 4, nome: 'Invocação do Mal', 
-        categoria: 'Terror', descricao: '...', 
+        categoria: 'Terror', descricao: 'Apenas não veja a fita', 
         duracao: 112, assistido: true},
     { id: 5, nome: 'Hotel Transylvania', 
-        categoria: 'Animação', descricao: '...', 
+        categoria: 'Animação', descricao: 'Casa dos monstros', 
         duracao: 91, assistido: false},
     { id: 6, nome: 'It - A Coisa', 
-        categoria: 'Terror', descricao: '...', 
+        categoria: 'Terror', descricao: 'Enfrente seus medos', 
         duracao: 135, assistido: false},
     { id: 7, nome: 'Bruxa de Blair', 
-        categoria: 'Terror', descricao: '...', 
+        categoria: 'Terror', descricao: 'Saia da floresta imediatamente', 
         duracao: 81, assistido: false},
     { id: 8, nome: 'Batman', 
-        categoria: 'Ação', descricao: '...', 
+        categoria: 'Ação', descricao: 'O cavaleiro das trevas', 
         duracao: 176, assistido: true},
     { id: 9, nome: 'Madagascar', 
-        categoria: 'Animação', descricao: '...', 
-        duracao: 86, assistido: false}
+        categoria: 'Animação', descricao: 'I like to move it move it', 
+        duracao: 86, assistido: false},
+    { id: 10, nome: 'De Volta Pro Futuro', 
+        categoria: 'Ficção', descricao: 'Uma volta acidental ao passado', 
+        duracao: 116, assistido: false},
+    { id: 11, nome: 'Matrix', 
+        categoria: 'Ficção', descricao: 'A vida dos hackers', 
+        duracao: 136, assistido: false}
 ];
 
 const catalogo = { nome: 'Meus Filmes', itens: filmes, 
@@ -66,6 +72,9 @@ function renderizar(lista) {
         break;
       case 'Terror':
         icone = '👻';
+        break;
+      case 'Ficção':
+        icone = '🚀';
         break;
       default:
         icone = '🎬';
