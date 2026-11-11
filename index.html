@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+    <!--Head, tags meta, tútilo e ligação ao CSS-->
     <head>
         <meta charset="UTF-8">
         <meta name="description" content="Catálogo de Filmes. Construída com HTML, CSS e JavaScript puro." />
@@ -9,14 +10,17 @@
     </head>
 
     <body>
+        <!--Cabeçalho-->
         <header>
             <h1 class="inicio">Catálogo de Filmes</h1>
             <p>Explore os filmes em cartaz e favoritos.</p>
         </header>
 
+        <!--Área de pesquisa dos filmes-->
         <input type="text" id="pesquisa" placeholder="Pesquisar filme...">
         <button id="btn-pesquisar">Pesquisar</button>
 
+        <!--Selecionar categorias para filtrar filmes inseridos-->
         <select id="categoria">
             <option value="Todas">Todas</option>
             <option value="Ação">Ação</option>
@@ -25,10 +29,13 @@
             <option value="Ficção">Ficção</option>
             <option value="favoritos">Favoritos</option>
         </select>
+
+        <!--Formulário de cadastro de Filme-->
         <form id="form-cadastro" novalidate>
 
             <h2>Cadastrar novo filme</h2>
 
+            <!--Inputs em sequência: título, duração em minutos, descrição e categoria-->
             <input
                 type="text"
                 id="nome-filme"
@@ -61,11 +68,14 @@
 
         </form>
 
+        <!---->
         <p id="painel-q06"></p>
 
+        <!--Painel de filmes cadastrados-->
         <main id="lista">
         </main>
 
+        <!--Ligação ao Javascript-->
         <script src="js/app.js" defer></script>
     </body>
 

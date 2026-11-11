@@ -1,3 +1,4 @@
+/* Body */
  * {
   font-family: Arial, sans-serif;
   background: #252323;
@@ -6,23 +7,21 @@
   padding: 10px;
  }
 
+ /* Painel de filmes */
  main {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
   gap: 20px;
 }
 
+/* Cartão do Filme */
  .card {
   background: rgb(54, 54, 54);
   border-radius: 8px;
   overflow: hidden;
 }
 
-.info {
-    display: flex;
-    flex-direction: block;
-}
-
+/* Botão de Pesquisa */
 #btn-pesquisar {
     background-color: #660000;
     color: #ffffff;
@@ -34,10 +33,12 @@
     height: 40px;
 }
 
+/* Botão de Pesquisa (mouse em cima) \*/
 #btn-pesquisar:hover {
     background-color: rgb(185, 12, 12);
 }
 
+/* Inputs de texto */
 input[type="text"] {
     padding: 5px;
     border: 1px solid #585858;
@@ -48,10 +49,13 @@ input[type="text"] {
     font-size: 20px;
 }
 
+/* Input específico do nome do filme */
  #nome-filme {
+    width: 200px;
     font-size: 14px;
 }
 
+/* Caixa numérica de duração */
  #duracao-filme {
     padding: 5px;
     border: 1px solid #585858;
@@ -62,14 +66,7 @@ input[type="text"] {
     font-size: 14px;
 }
 
-#descricao-filme {
-    padding: 5px;
-    border: 1px solid #585858;
-    border-radius: 4px;
-    margin-left: 10px;
-    font-size: 14px;
-}
-
+/* Select da categoria */
 #categoria-filme {
     padding: 5px;
     border: 1px solid #585858;
@@ -80,6 +77,7 @@ input[type="text"] {
     font-size: 14px;
 }
 
+/* Botão de Cadastro */
 #cadastrar-filme {
     background-color: #660000;
     color: #ffffff;
@@ -91,6 +89,7 @@ input[type="text"] {
     height: 40px;
 }
 
+/* Botão de favoritar Filmes */
 .btn-favorito {
     background-color: #3d3c3c;
     color: white;
@@ -98,9 +97,13 @@ input[type="text"] {
     width: 100px;
     border-radius: 12px;
 }
+
+/* Erros */
 .erro {
     border: 2px solid red;
 }
+
+/* Formulário */
 #form-cadastro {
     display: flex;
     align-items: center;
@@ -108,12 +111,19 @@ input[type="text"] {
     flex-wrap: wrap;
 }
 
+/* Textarea da descrição */
 #form-cadastro textarea {
-    width: 300px;
-    height: 70px;
-    box-sizing: border-box;
-    resize: vertical;
+    padding: 5px;
+    border: 1px solid #585858;
+    border-radius: 4px;
+    margin-left: 10px;
+    font-size: 14px;
+    width: 350px;
+    height: 30px;
+    resize: both;
 }
+
+/* Botão ed favorito (Favoritado) */
 .btn-favorito.ativo {
     background-color: #806500;
     border: 2px solid gold;

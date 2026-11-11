@@ -1,5 +1,6 @@
-
+//IA utilizada para auxílio no raciocínio lógico e "criação" dos emojis das categorias
 // [R1]
+// Criação Objetos Filmes e Catálogo
 const filmes = [
     { id: 1, nome: 'Vingadores: Guerra Infinita', categoria: 'Ação', descricao: 'A batalha final... Será?', duracao: 154, assistido: true },
     { id: 2, nome: 'Até o Último Homem', categoria: 'Ação', descricao: 'Um soldado que vai de desvalorizado à herói', duracao: 139, assistido: false },
@@ -32,10 +33,12 @@ const catalogo = {
 };
 
 // [R2]
+//Função que carrega a lista dos filmes cadastrados no html
 function renderizar(lista) {
     const container = document.getElementById('lista');
     container.innerHTML = '';
 
+    //Validação (se lista vazia, exibe que não há itens)
     if (lista.length === 0) {
         const vazio = document.createElement('p');
         vazio.textContent = 'Nenhum item encontrado';
@@ -43,6 +46,7 @@ function renderizar(lista) {
         return;
     }
 
+    //Laço de repetição que verifica a categoria do filme e lhe da um emoji de identificação
     for (const filme of lista) {
         let icone;
 
@@ -72,6 +76,7 @@ function renderizar(lista) {
             descricao = descricao.slice(0, 60) + '…';
         }
 
+        //Criação de objetos tanto no javascript quanto no html de acordo com itens de filmes[] 
         const card = document.createElement('article');
         card.className = 'card';
 
@@ -123,6 +128,7 @@ function renderizar(lista) {
     }
 }
 
+//Atribuição de valores a constantes de acordo com o id do html
 // [R3]
 const campoPesquisa = document.getElementById('pesquisa');
 const campoCategoria = document.getElementById('categoria');
@@ -135,6 +141,7 @@ const campoCategoriaFilme = document.getElementById('categoria-filme');
 const campoDescricao = document.getElementById('descricao-filme');
 const mensagem = document.getElementById('mensagem');
 
+//Função que filtra filmes de acordo com pesquisa, categoria ou ambos os campos
 // [R3]
 function filtrarFilmes() {
     const texto = campoPesquisa.value.toLowerCase();
@@ -175,6 +182,7 @@ campoPesquisa.addEventListener('keydown', function(event) {
     }
 });
 
+//Função que atualiza o painel de estatísticas dos filmes em geral
 // [R6]
 function atualizarPainel(lista) {
     const painel = document.getElementById('painel-q06');
@@ -218,6 +226,8 @@ function atualizarPainel(lista) {
         `Maior duração: ${maior}`;
 }
 
+//Função que valida se um filme pode ser cadastrado ou não, validações: título com no mínimo 3 caracteres, duração entre 1 e 1000 minutos
+// categoria obrigatória e descrição obrigatória
 // [R4]
 function validarFilme() {
     const nome = campoNome.value.trim();
@@ -261,6 +271,7 @@ function validarFilme() {
     };
 }
 
+//Atualiza painel, se filme novo for cadastrado, envia dados do html para o javascript 
 // [R4]
 formCadastro.addEventListener('submit', function(event) {
     event.preventDefault();
@@ -294,5 +305,6 @@ formCadastro.addEventListener('submit', function(event) {
     }
 });
 
+//Atualiza painel de filmes a cara interação
 // [R7]
 filtrarFilmes();
