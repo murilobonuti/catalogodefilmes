@@ -71,3 +71,7 @@ input[type="text"] {
     box-sizing: border-box;
     resize: vertical;
 }
+.btn-favorito.ativo {
+    background-color: #806500;
+    border: 2px solid gold;
+}

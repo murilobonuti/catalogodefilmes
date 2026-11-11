@@ -1,5 +1,5 @@
 
-// [R1] Dados: array de objetos e objeto principal
+// [R1]
 const filmes = [
     { id: 1, nome: 'Vingadores: Guerra Infinita', categoria: 'Ação', descricao: 'A batalha final... Será?', duracao: 154, assistido: true },
     { id: 2, nome: 'Até o Último Homem', categoria: 'Ação', descricao: 'Um soldado que vai de desvalorizado à herói', duracao: 139, assistido: false },
@@ -31,7 +31,7 @@ const catalogo = {
     }
 };
 
-// [R2] Renderização Dinâmica
+// [R2]
 function renderizar(lista) {
     const container = document.getElementById('lista');
     container.innerHTML = '';
@@ -58,6 +58,9 @@ function renderizar(lista) {
                 break;
             case 'Ficção':
                 icone = '🚀';
+                break;
+            case 'Favoritos':
+                icone = '⭐';
                 break;
             default:
                 icone = '🎬';
@@ -95,13 +98,17 @@ function renderizar(lista) {
 
         const favorito = document.createElement('button');
         favorito.className = 'btn-favorito';
+        favorito.textContent = filme.favorito ? '⭐ Favoritado' : '☆ Favoritar';
+        favorito.classList.toggle('ativo', !!filme.favorito);
 
-          favorito.textContent = filme.favorito ? '⭐ Favoritado' : '☆ Favoritar';
+        // [R5]
+        favorito.addEventListener('click', function() {
+            catalogo.marcarFavorito(filme.id);
+            favorito.classList.toggle('ativo', filme.favorito);
+            favorito.textContent = filme.favorito ? '⭐ Favoritado' : '☆ Favoritar';
 
-          favorito.addEventListener('click', function() {
-              catalogo.marcarFavorito(filme.id);
-              filtrarFilmes();
-          });
+            filtrarFilmes();
+        });
 
         info.appendChild(titulo);
         info.appendChild(categoria);
@@ -116,11 +123,11 @@ function renderizar(lista) {
     }
 }
 
-
-// [R3] Busca e filtro
-
+// [R3]
 const campoPesquisa = document.getElementById('pesquisa');
 const campoCategoria = document.getElementById('categoria');
+
+// [R4]
 const formCadastro = document.getElementById('form-cadastro');
 const campoNome = document.getElementById('nome-filme');
 const campoDuracao = document.getElementById('duracao-filme');
@@ -128,76 +135,91 @@ const campoCategoriaFilme = document.getElementById('categoria-filme');
 const campoDescricao = document.getElementById('descricao-filme');
 const mensagem = document.getElementById('mensagem');
 
+// [R3]
 function filtrarFilmes() {
-
     const texto = campoPesquisa.value.toLowerCase();
     const categoriaSelecionada = campoCategoria.value;
 
-    
     const listaFiltrada = [];
 
-    
     for (const filme of catalogo.itens) {
-
         const nomeFilme = filme.nome.toLowerCase();
 
-        
         const correspondeTexto = nomeFilme.indexOf(texto) !== -1;
 
-        
         const correspondeCategoria =
             categoriaSelecionada === 'Todas' ||
             filme.categoria === categoriaSelecionada;
 
-        
         if (correspondeTexto && correspondeCategoria) {
             listaFiltrada.push(filme);
         }
     }
 
-    
     renderizar(listaFiltrada);
-
-    
     atualizarPainel(listaFiltrada);
 }
-
-
 
 campoPesquisa.addEventListener('input', function() {
     filtrarFilmes();
 });
 
-
-
 campoCategoria.addEventListener('change', function() {
     filtrarFilmes();
 });
 
-
 campoPesquisa.addEventListener('keydown', function(event) {
-
     if (event.key === 'Escape') {
         campoPesquisa.value = '';
         filtrarFilmes();
     }
-
 });
 
-
-
-function atualizarPainel(listaFiltrada) {
-
+// [R6]
+function atualizarPainel(lista) {
     const painel = document.getElementById('painel-q06');
+    const total = lista.length;
+    let quantidadeFavoritos = 0;
+    let quantidadeAssistidos = 0;
+    let soma = 0;
+    let maiorValor = null;
 
-    if (painel) {
-        painel.textContent =
-            'Filmes encontrados: ' + listaFiltrada.length;
+    for (const filme of lista) {
+        if (filme.favorito === true) {
+            quantidadeFavoritos++;
+        }
+
+        if (filme.assistido === true) {
+            quantidadeAssistidos++;
+        }
+
+        soma += filme.duracao;
+
+        if (maiorValor === null || filme.duracao > maiorValor.duracao) {
+            maiorValor = filme;
+        }
     }
+
+    let media = '—';
+
+    if (total > 0) {
+        media = (soma / total).toFixed(2).replace('.', ',');
+    }
+
+    const maior = maiorValor !== null
+        ? `${maiorValor.nome} (${maiorValor.duracao})`
+        : '—';
+
+    painel.textContent =
+        `Total exibido: ${total} | ` +
+        `Favoritos: ${quantidadeFavoritos} | ` +
+        `Assistidos: ${quantidadeAssistidos} | ` +
+        `Média de duração: ${media} | ` +
+        `Maior duração: ${maior}`;
 }
 
+// [R4]
 function validarFilme() {
-
     const nome = campoNome.value.trim();
     const duracao = parseFloat(campoDuracao.value);
     const categoria = campoCategoriaFilme.value;
@@ -223,11 +245,12 @@ function validarFilme() {
     } else {
         campoCategoriaFilme.classList.remove('erro');
     }
+
     if (descricao === '') {
-        campoCategoriaFilme.classList.add('erro');
+        campoDescricao.classList.add('erro');
         throw new Error('Digite uma descrição');
     } else {
-        campoCategoriaFilme.classList.remove('erro');
+        campoDescricao.classList.remove('erro');
     }
 
     return {
@@ -238,12 +261,11 @@ function validarFilme() {
     };
 }
 
+// [R4]
 formCadastro.addEventListener('submit', function(event) {
-
     event.preventDefault();
 
     try {
-
         const dados = validarFilme();
 
         const novoFilme = {
@@ -268,12 +290,9 @@ formCadastro.addEventListener('submit', function(event) {
         filtrarFilmes();
 
     } catch (erro) {
-
         mensagem.textContent = erro.message;
-
     }
-
 });
 
+// [R7]
 filtrarFilmes();
-
