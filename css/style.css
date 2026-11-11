@@ -48,6 +48,49 @@ input[type="text"] {
     font-size: 20px;
 }
 
+ #nome-filme {
+    font-size: 14px;
+}
+
+ #duracao-filme {
+    padding: 5px;
+    border: 1px solid #585858;
+    border-radius: 4px;
+    width: 150px;
+    height: 30px;
+    margin-left: 10px;
+    font-size: 14px;
+}
+
+#descricao-filme {
+    padding: 5px;
+    border: 1px solid #585858;
+    border-radius: 4px;
+    margin-left: 10px;
+    font-size: 14px;
+}
+
+#categoria-filme {
+    padding: 5px;
+    border: 1px solid #585858;
+    border-radius: 4px;
+    width: 200px;
+    height: 70px;
+    margin-left: 10px;
+    font-size: 14px;
+}
+
+#cadastrar-filme {
+    background-color: #660000;
+    color: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 5px;
+    transition: 0.5s;
+    width: 120px;
+    height: 40px;
+}
+
 .btn-favorito {
     background-color: #3d3c3c;
     color: white;
