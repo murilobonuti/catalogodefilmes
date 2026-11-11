@@ -66,7 +66,7 @@ function renderizar(lista) {
         let descricao = filme.descricao;
 
         if (descricao.length > 60) {
-            descricao = descricao.slice(0, 60) + '...';
+            descricao = descricao.slice(0, 60) + '…';
         }
 
         const card = document.createElement('article');
@@ -121,6 +121,12 @@ function renderizar(lista) {
 
 const campoPesquisa = document.getElementById('pesquisa');
 const campoCategoria = document.getElementById('categoria');
+const formCadastro = document.getElementById('form-cadastro');
+const campoNome = document.getElementById('nome-filme');
+const campoDuracao = document.getElementById('duracao-filme');
+const campoCategoriaFilme = document.getElementById('categoria-filme');
+const campoDescricao = document.getElementById('descricao-filme');
+const mensagem = document.getElementById('mensagem');
 
 function filtrarFilmes() {
 
@@ -190,4 +196,84 @@ function atualizarPainel(listaFiltrada) {
     }
 }
 
+function validarFilme() {
+
+    const nome = campoNome.value.trim();
+    const duracao = parseFloat(campoDuracao.value);
+    const categoria = campoCategoriaFilme.value;
+    const descricao = campoDescricao.value.trim();
+
+    if (nome.length < 3) {
+        campoNome.classList.add('erro');
+        throw new Error('Digite um nome com pelo menos 3 caracteres');
+    } else {
+        campoNome.classList.remove('erro');
+    }
+
+    if (isNaN(duracao) || duracao <= 0 || duracao > 1000) {
+        campoDuracao.classList.add('erro');
+        throw new Error('Digite uma duração entre 1 e 1000 minutos');
+    } else {
+        campoDuracao.classList.remove('erro');
+    }
+
+    if (categoria === '') {
+        campoCategoriaFilme.classList.add('erro');
+        throw new Error('Selecione uma categoria');
+    } else {
+        campoCategoriaFilme.classList.remove('erro');
+    }
+    if (descricao === '') {
+        campoCategoriaFilme.classList.add('erro');
+        throw new Error('Digite uma descrição');
+    } else {
+        campoCategoriaFilme.classList.remove('erro');
+    }
+
+    return {
+        nome: nome,
+        duracao: duracao,
+        categoria: categoria,
+        descricao: descricao
+    };
+}
+
+formCadastro.addEventListener('submit', function(event) {
+
+    event.preventDefault();
+
+    try {
+
+        const dados = validarFilme();
+
+        const novoFilme = {
+            id: Date.now(),
+            nome: dados.nome,
+            categoria: dados.categoria,
+            descricao: dados.descricao,
+            duracao: dados.duracao,
+            assistido: false,
+            favorito: false
+        };
+
+        catalogo.adicionar(novoFilme);
+
+        formCadastro.reset();
+
+        campoPesquisa.value = '';
+        campoCategoria.value = 'Todas';
+
+        mensagem.textContent = 'Filme cadastrado com sucesso!';
+
+        filtrarFilmes();
+
+    } catch (erro) {
+
+        mensagem.textContent = erro.message;
+
+    }
+
+});
+
 filtrarFilmes();
+

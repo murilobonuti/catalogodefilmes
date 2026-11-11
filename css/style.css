@@ -55,3 +55,19 @@ input[type="text"] {
     width: 100px;
     border-radius: 12px;
 }
+.erro {
+    border: 2px solid red;
+}
+#form-cadastro {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+#form-cadastro textarea {
+    width: 300px;
+    height: 70px;
+    box-sizing: border-box;
+    resize: vertical;
+}
