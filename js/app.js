@@ -308,3 +308,4 @@ formCadastro.addEventListener('submit', function(event) {
 //Atualiza painel de filmes a cara interação
 // [R7]
 filtrarFilmes();
+console.log(filmes);
