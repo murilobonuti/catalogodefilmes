@@ -2,17 +2,17 @@
 // [R1]
 // Criação Objetos Filmes e Catálogo
 const filmes = [
-    { id: 1, nome: 'Vingadores: Guerra Infinita', categoria: 'Ação', descricao: 'A batalha final... Será?', duracao: 154, assistido: true },
-    { id: 2, nome: 'Até o Último Homem', categoria: 'Ação', descricao: 'Um soldado que vai de desvalorizado à herói', duracao: 139, assistido: false },
-    { id: 3, nome: 'Zootopia', categoria: 'Animação', descricao: 'Cidade dos bichos', duracao: 108, assistido: true },
-    { id: 4, nome: 'Invocação do Mal', categoria: 'Terror', descricao: 'Apenas não veja a fita', duracao: 112, assistido: true },
-    { id: 5, nome: 'Shrek', categoria: 'Animação', descricao: 'O ogro mais amado do mundo', duracao: 90, assistido: false },
-    { id: 6, nome: 'It - A Coisa', categoria: 'Terror', descricao: 'Enfrente seus medos', duracao: 135, assistido: false },
-    { id: 7, nome: 'Bruxa de Blair', categoria: 'Terror', descricao: 'Saia da floresta imediatamente', duracao: 81, assistido: false },
-    { id: 8, nome: 'Batman', categoria: 'Ação', descricao: 'O cavaleiro das trevas', duracao: 176, assistido: true },
-    { id: 9, nome: 'Madagascar', categoria: 'Animação', descricao: 'I like to move it move it', duracao: 86, assistido: false },
-    { id: 10, nome: 'De Volta Pro Futuro', categoria: 'Ficção', descricao: 'Uma volta acidental ao passado', duracao: 116, assistido: false },
-    { id: 11, nome: 'Matrix', categoria: 'Ficção', descricao: 'A vida dos hackers', duracao: 136, assistido: false }
+    { id: 1, nome: 'Vingadores: Guerra Infinita', categoria: 'Ação', descricao: 'A batalha final... Será?', duracao: 154, assistido: true, imagem: 'images/avengers.webp'},
+    { id: 2, nome: 'Até o Último Homem', categoria: 'Ação', descricao: 'Um soldado que vai de desvalorizado à herói', duracao: 139, assistido: false, imagem: 'images/ate-o-ultimo-homem.webp' },
+    { id: 3, nome: 'Zootopia', categoria: 'Animação', descricao: 'Cidade dos bichos', duracao: 108, assistido: true, imagem: 'images/zootopia.jfif' },
+    { id: 4, nome: 'Invocação do Mal', categoria: 'Terror', descricao: 'Boneca Maldita', duracao: 112, assistido: true, imagem: 'images/invocacao-do-mal.jfif' },
+    { id: 5, nome: 'Shrek', categoria: 'Animação', descricao: 'O ogro mais amado do mundo', duracao: 90, assistido: false, imagem: 'images/shrek.webp' },
+    { id: 6, nome: 'It - A Coisa', categoria: 'Terror', descricao: 'Enfrente seus medos', duracao: 135, assistido: false, imagem: 'images/it.webp' },
+    { id: 7, nome: 'Bruxa de Blair', categoria: 'Terror', descricao: 'Saia da floresta imediatamente', duracao: 81, assistido: false, imagem: 'images/bruxa.webp' },
+    { id: 8, nome: 'Batman', categoria: 'Ação', descricao: 'O cavaleiro das trevas', duracao: 176, assistido: true, imagem: 'images/batman.webp' },
+    { id: 9, nome: 'Madagascar', categoria: 'Animação', descricao: 'I like to move it move it', duracao: 86, assistido: false, imagem: 'images/madagascar.jfif' },
+    { id: 10, nome: 'De Volta Pro Futuro', categoria: 'Ficção', descricao: 'Uma volta acidental ao passado', duracao: 116, assistido: false, imagem: 'images/dvpf.webp' },
+    { id: 11, nome: 'Matrix', categoria: 'Ficção', descricao: 'A vida dos hackers', duracao: 136, assistido: false, imagem: 'images/matrix.webp' }
 ];
 
 const catalogo = {
@@ -27,6 +27,15 @@ const catalogo = {
         for (const filme of this.itens) {
             if (filme.id === id) {
                 filme.favorito = !filme.favorito;
+            }
+        }
+    },
+
+    remover: function(id) {
+        for (let i = 0; i < this.itens.length; i++){
+            if(this.itens[i].id === id) {
+                this.itens.splice(i, 1);
+                break;
             }
         }
     }
@@ -82,8 +91,14 @@ function renderizar(lista) {
 
         const poster = document.createElement('div');
         poster.className = 'poster';
-        poster.textContent = icone;
 
+        const img = document.createElement('img');
+        img.className = 'capa';
+        img.src = filme.imagem;
+        img.alt = 'Pôster de ' + filme.nome;
+
+        poster.appendChild(img);
+        
         const info = document.createElement('div');
         info.className = 'info';
 
@@ -101,6 +116,16 @@ function renderizar(lista) {
         const desc = document.createElement('p');
         desc.textContent = descricao;
 
+        
+
+        const botaoRemover = document.createElement('button');
+        botaoRemover.className = 'btn-remover';
+        botaoRemover.textContent = 'Remover';
+        botaoRemover.addEventListener('click', function () {
+            catalogo.remover(filme.id);
+            renderizar(catalogo.itens);
+        });
+
         const favorito = document.createElement('button');
         favorito.className = 'btn-favorito';
         favorito.textContent = filme.favorito ? '⭐ Favoritado' : '☆ Favoritar';
@@ -115,12 +140,16 @@ function renderizar(lista) {
             filtrarFilmes();
         });
 
+        img.addEventListener('error', function(){
+            poster.textContent = icone;
+        });
+
         info.appendChild(titulo);
         info.appendChild(categoria);
         info.appendChild(duracao);
         info.appendChild(desc);
         info.appendChild(favorito);
-
+        info.appendChild(botaoRemover);
         card.appendChild(poster);
         card.appendChild(info);
 

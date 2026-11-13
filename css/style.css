@@ -128,3 +128,38 @@ input[type="text"] {
     background-color: #806500;
     border: 2px solid gold;
 }
+
+ #footer {
+    background-color: #585858;
+    margin-top: 50px;
+    text-align: center;
+    padding: 30px, 0px;
+ }
+
+ .final {
+    background-color: #585858
+ }
+
+ .btn-remover {
+    margin-left: 10px;
+    background-color: #660000;
+    color: white;
+    height: 60px;
+    width: 100px;
+    border-radius: 12px;
+ }
+
+ #btn-remover:hover {
+    background-color: rgb(185, 12, 12);
+}
+
+ .poster {
+    overflow: hidden;
+ }
+
+ .capa {
+    width: 375px;
+    height: 575px;
+    object-fit: cover;
+    display: block;
+ }
