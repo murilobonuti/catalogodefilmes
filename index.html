@@ -10,69 +10,72 @@
     </head>
 
     <body>
-        <!--Cabeçalho-->
-        <header>
-            <h1 class="inicio">Catálogo de Filmes</h1>
-            <p>Explore os filmes em cartaz e favoritos.</p>
-        </header>
+        <div class="tema light">
+            <!--Cabeçalho-->
+            <header>
+                <h1 class="inicio">Catálogo de Filmes</h1>
+                <p>Explore os filmes em cartaz e favoritos.</p>
+            </header>
 
-        <!--Área de pesquisa dos filmes-->
-        <input type="text" id="pesquisa" placeholder="Pesquisar filme...">
-        <button id="btn-pesquisar">Pesquisar</button>
+            <!--Área de pesquisa dos filmes-->
+            <input type="text" id="pesquisa" placeholder="Pesquisar filme...">
+            <button id="btn-pesquisar">Pesquisar</button>
 
-        <!--Selecionar categorias para filtrar filmes inseridos-->
-        <select id="categoria">
-            <option value="Todas">Todas</option>
-            <option value="Ação">Ação</option>
-            <option value="Terror">Terror</option>
-            <option value="Animação">Animação</option>
-            <option value="Ficção">Ficção</option>
-        </select>
-
-        <!--Formulário de cadastro de Filme-->
-        <form id="form-cadastro" novalidate>
-
-            <h2>Cadastrar novo filme</h2>
-
-            <!--Inputs em sequência: título, duração em minutos, descrição e categoria-->
-            <input
-                type="text"
-                id="nome-filme"
-                placeholder="Nome do filme"
-            >
-
-            <input
-                type="number"
-                id="duracao-filme"
-                placeholder="Duração em minutos"
-            >
-            
-            <textarea
-                id="descricao-filme"
-                placeholder="Descrição do filme"
-                rows="4"
-            ></textarea>
-
-            <select id="categoria-filme">
-                <option value="">Selecione uma categoria</option>
+            <!--Selecionar categorias para filtrar filmes inseridos-->
+            <select id="categoria">
+                <option value="Todas">Todas</option>
                 <option value="Ação">Ação</option>
                 <option value="Terror">Terror</option>
                 <option value="Animação">Animação</option>
                 <option value="Ficção">Ficção</option>
             </select>
 
-            <button id="cadastrar-filme" type="submit">Cadastrar filme</button>
+            <!--Formulário de cadastro de Filme-->
+            <form id="form-cadastro" novalidate>
 
-            <p id="mensagem"></p>
+                <h2>Cadastrar novo filme</h2>
 
-        </form>
+                <!--Inputs em sequência: título, duração em minutos, descrição e categoria-->
+                <input
+                    type="text"
+                    id="nome-filme"
+                    placeholder="Nome do filme"
+                >
 
-        <!---->
-        <p id="painel-q06"></p>
+                <input
+                    type="number"
+                    id="duracao-filme"
+                    placeholder="Duração em minutos"
+                >
+                
+                <textarea
+                    id="descricao-filme"
+                    placeholder="Descrição do filme"
+                    rows="4"
+                ></textarea>
 
-        <!--Painel de filmes cadastrados-->
-        <main id="lista">
-        </main>
+                <select id="categoria-filme">
+                    <option value="">Selecione uma categoria</option>
+                    <option value="Ação">Ação</option>
+                    <option value="Terror">Terror</option>
+                    <option value="Animação">Animação</option>
+                    <option value="Ficção">Ficção</option>
+                </select>
+
+                <input type="file" id="imagem" accept=".jpg, .png, .jfif, .webp, .jpeg">
+                <button id="cadastrar-filme" type="submit">Cadastrar filme</button>
+
+                <p id="mensagem"></p>
+
+            </form>
+
+            <!---->
+            <p id="painel-q06"></p>
+
+            <!--Painel de filmes cadastrados-->
+            <main id="lista">
+            </main>
+        </div>
 
         <!--Ligação ao Javascript-->
         <script src="js/app.js" defer></script>
