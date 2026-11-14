@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-    <!--Head, tags meta, tútilo e ligação ao CSS-->
+    <!--Head, tags meta, título e ligação ao CSS-->
     <head>
         <meta charset="UTF-8">
         <meta name="description" content="Catálogo de Filmes. Construída com HTML, CSS e JavaScript puro." />
@@ -10,80 +10,91 @@
     </head>
 
     <body>
-        <div class="tema light">
             <!--Cabeçalho-->
             <header>
                 <h1 class="inicio">Catálogo de Filmes</h1>
                 <p>Explore os filmes em cartaz e favoritos.</p>
             </header>
 
-            <!--Área de pesquisa dos filmes-->
-            <input type="text" id="pesquisa" placeholder="Pesquisar filme...">
-            <button id="btn-pesquisar">Pesquisar</button>
+            <section>
+                <!--Área de pesquisa dos filmes-->
+                <input type="text" id="pesquisa" placeholder="Pesquisar filme...">
+                <button id="btn-pesquisar">Pesquisar</button>
 
-            <!--Selecionar categorias para filtrar filmes inseridos-->
-            <select id="categoria">
-                <option value="Todas">Todas</option>
-                <option value="Ação">Ação</option>
-                <option value="Terror">Terror</option>
-                <option value="Animação">Animação</option>
-                <option value="Ficção">Ficção</option>
-            </select>
-
-            <!--Formulário de cadastro de Filme-->
-            <form id="form-cadastro" novalidate>
-
-                <h2>Cadastrar novo filme</h2>
-
-                <!--Inputs em sequência: título, duração em minutos, descrição e categoria-->
-                <input
-                    type="text"
-                    id="nome-filme"
-                    placeholder="Nome do filme"
-                >
-
-                <input
-                    type="number"
-                    id="duracao-filme"
-                    placeholder="Duração em minutos"
-                >
-                
-                <textarea
-                    id="descricao-filme"
-                    placeholder="Descrição do filme"
-                    rows="4"
-                ></textarea>
-
-                <select id="categoria-filme">
-                    <option value="">Selecione uma categoria</option>
+                <!--Selecionar categorias para filtrar filmes inseridos-->
+                <select id="categoria">
+                    <option value="Todas">Todas</option>
                     <option value="Ação">Ação</option>
                     <option value="Terror">Terror</option>
                     <option value="Animação">Animação</option>
                     <option value="Ficção">Ficção</option>
                 </select>
+            </section>
+            
+            <section>
+                <!--Formulário de cadastro de Filme-->
+                <form id="form-cadastro" novalidate>
 
-                <input type="file" id="imagem" accept=".jpg, .png, .jfif, .webp, .jpeg">
-                <button id="cadastrar-filme" type="submit">Cadastrar filme</button>
+                    <h2>Cadastrar novo filme</h2>
 
-                <p id="mensagem"></p>
+                    <!--Inputs em sequência: título, duração em minutos, descrição e categoria-->
+                    <input
+                        type="text"
+                        id="nome-filme"
+                        placeholder="Nome do filme"
+                    >
 
-            </form>
+                    <input
+                        type="number"
+                        id="duracao-filme"
+                        placeholder="Duração em minutos"
+                    >
+                    
+                    <textarea
+                        id="descricao-filme"
+                        placeholder="Descrição do filme"
+                        rows="4"
+                    ></textarea>
 
-            <!---->
-            <p id="painel-q06"></p>
+                    <select id="categoria-filme">
+                        <option value="">Selecione uma categoria</option>
+                        <option value="Ação">Ação</option>
+                        <option value="Terror">Terror</option>
+                        <option value="Animação">Animação</option>
+                        <option value="Ficção">Ficção</option>
+                    </select>
 
-            <!--Painel de filmes cadastrados-->
-            <main id="lista">
-            </main>
-        </div>
+                    <input type="file" id="imagem" accept=".jpg, .png, .jfif, .webp, .jpeg">
+                    <button id="cadastrar-filme" type="submit">Cadastrar filme</button>
+
+                    <p id="mensagem"></p>
+
+                </form>
+
+            </section>
+
+            <section>
+                <!---->
+                <p id="painel-q06"></p>
+            </section>
+
+            <section>
+                <!--Painel de filmes cadastrados-->
+                <main id="lista">
+                </main>
+            </section>
+        
+
+
+        <footer id="footer">
+        <address class="final">Desenvolvido por: Murilo Bonuti Silveira e Vinícius Luiz Apolaro</address>
+        <br>
+        <p class="final">FATEC - Faculdade de Tecnologia de Ribeirão Preto</p>
+        </footer>
 
         <!--Ligação ao Javascript-->
         <script src="js/app.js" defer></script>
     </body>
 
-    <footer id="footer">
-        <address class="final">Desenvolvido por: Murilo Bonuti Silveira e Vinícius Luiz Apolaro</address>
-        <br>
-        <p class="final">FATEC - Faculdade de Tecnologia de Ribeirão Preto</p>
-    </footer>
+    
 </html>

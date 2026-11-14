@@ -92,13 +92,22 @@ function renderizar(lista) {
         const poster = document.createElement('div');
         poster.className = 'poster';
 
-        const img = document.createElement('img');
-        img.className = 'capa';
-        img.src = filme.imagem;
-        img.alt = 'Pôster de ' + filme.nome;
+        //Se o filme tem imagem, mostra a imagem; senão (ou se ela falhar), mostra o emoji da categoria
+        if (filme.imagem) {
+            const img = document.createElement('img');
+            img.className = 'capa';
+            img.src = filme.imagem;
+            img.alt = 'Pôster de ' + filme.nome;
 
-        poster.appendChild(img);
-        
+            img.addEventListener('error', function() {
+                poster.textContent = icone;
+            });
+
+            poster.appendChild(img);
+        } else {
+            poster.textContent = icone;
+        }
+
         const info = document.createElement('div');
         info.className = 'info';
 
@@ -115,8 +124,6 @@ function renderizar(lista) {
 
         const desc = document.createElement('p');
         desc.textContent = descricao;
-
-        
 
         const botaoRemover = document.createElement('button');
         botaoRemover.className = 'btn-remover';
@@ -138,10 +145,6 @@ function renderizar(lista) {
             favorito.textContent = filme.favorito ? '⭐ Favoritado' : '☆ Favoritar';
 
             filtrarFilmes();
-        });
-
-        img.addEventListener('error', function(){
-            poster.textContent = icone;
         });
 
         info.appendChild(titulo);
@@ -168,6 +171,7 @@ const campoNome = document.getElementById('nome-filme');
 const campoDuracao = document.getElementById('duracao-filme');
 const campoCategoriaFilme = document.getElementById('categoria-filme');
 const campoDescricao = document.getElementById('descricao-filme');
+const campoImagem = document.getElementById('imagem');
 const mensagem = document.getElementById('mensagem');
 
 //Função que filtra filmes de acordo com pesquisa, categoria ou ambos os campos
@@ -300,34 +304,58 @@ function validarFilme() {
     };
 }
 
-//Atualiza painel, se filme novo for cadastrado, envia dados do html para o javascript 
+//Cria o objeto do novo filme, adiciona ao catálogo e atualiza a tela
+// [R4]
+function cadastrarFilme(dados, imagem) {
+    const novoFilme = {
+        id: Date.now(),
+        nome: dados.nome,
+        categoria: dados.categoria,
+        descricao: dados.descricao,
+        duracao: dados.duracao,
+        assistido: false,
+        favorito: false,
+        imagem: imagem
+    };
+
+    catalogo.adicionar(novoFilme);
+
+    formCadastro.reset();
+
+    campoPesquisa.value = '';
+    campoCategoria.value = 'Todas';
+
+    mensagem.textContent = 'Filme cadastrado com sucesso!';
+
+    filtrarFilmes();
+}
+
+//Valida os dados, lê a imagem escolhida (se houver) e só então cadastra o filme
 // [R4]
 formCadastro.addEventListener('submit', function(event) {
     event.preventDefault();
 
     try {
         const dados = validarFilme();
+        const arquivo = campoImagem.files[0];
 
-        const novoFilme = {
-            id: Date.now(),
-            nome: dados.nome,
-            categoria: dados.categoria,
-            descricao: dados.descricao,
-            duracao: dados.duracao,
-            assistido: false,
-            favorito: false
-        };
+        //validação se arquivo tem no máximo 2MB
+        if (arquivo && arquivo.size > 2 * 1024 * 1024) {
+            throw new Error('A imagem deve ter no máximo 2 MB');
+        }
 
-        catalogo.adicionar(novoFilme);
+        if (arquivo) {
+            //A leitura do arquivo é assíncrona: o filme só é criado quando o 'load' disparar
+            const leitor = new FileReader();
 
-        formCadastro.reset();
+            leitor.addEventListener('load', function() {
+                cadastrarFilme(dados, leitor.result);
+            });
 
-        campoPesquisa.value = '';
-        campoCategoria.value = 'Todas';
-
-        mensagem.textContent = 'Filme cadastrado com sucesso!';
-
-        filtrarFilmes();
+            leitor.readAsDataURL(arquivo);
+        } else {
+            cadastrarFilme(dados, '');
+        }
 
     } catch (erro) {
         mensagem.textContent = erro.message;
@@ -335,6 +363,5 @@ formCadastro.addEventListener('submit', function(event) {
 });
 
 //Atualiza painel de filmes a cara interação
-// [R7]
 filtrarFilmes();
 console.log(filmes);
