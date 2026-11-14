@@ -365,3 +365,19 @@ formCadastro.addEventListener('submit', function(event) {
 //Atualiza painel de filmes a cara interação
 filtrarFilmes();
 console.log(filmes);
+
+// Modo escuro / claro
+const botaoTema = document.getElementById('btn-tema');
+
+function aplicarTema(tema) {
+    document.documentElement.dataset.tema = tema;
+    botaoTema.textContent = tema === 'escuro' ? '☀️ Modo claro' : '🌙 Modo escuro';
+}
+
+botaoTema.addEventListener('click', function() {
+    const atual = document.documentElement.dataset.tema;
+    aplicarTema(atual === 'claro' ? 'escuro' : 'claro');
+});
+
+// Ao abrir a página, começa no escuro (o visual original)
+aplicarTema('escuro');

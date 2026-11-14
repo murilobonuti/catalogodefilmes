@@ -1,4 +1,4 @@
-# catalogodefilmes
+# CatalogodeFilmes
 Catalogo de Filmes feito em HTML, CSS e JavaScript puro
 
 NOMES: Murilo Bonuti Silveira e Vinícius Luiz Apolaro
@@ -19,7 +19,7 @@ Vinícius: Questões 4, 5 e 6.
 
 Dificuldades Encontradas: 
 1 - Compreensão do relacionamento entre o Html e o Javascript, pois nunca tinha mexido com as tecnologias juntas, resolvi estudando, revisando códigos e conversando com minha dupla, pois ele já tinha uma noção sobre HTML + Javascript. (Murilo)
-2 - Raciocínio lógico, quando se tem uma ideia sobre o que deve ser feito no código, outro problema aparece, como implementar isso, e acaba se tornando a pate mais difícil, tirar a ideia do papel e colocá-la nas linhas de código, utilizamoa da IA para auxiliarnos nesse quesito, dando dicas e insights que nos ajudaram a pensar mais fundo.
+2 - Troca de modo (Escuro / Claro), Tivemos de estudar sobre a criação de variáveis no CSS, que guardam a cor e alteram por meio de uma função do javascript o "pacote" de variáveis.
 3 - Inserção da imagem no cadastro, Levamos um tempo até entender como funcionava a inserção de uma imagem no javascript, também precisamos quebrar bastante a cabeça e pedir ajuda da IA para o raciocínio lógico.
 
 Uso de IA: Utilizamos da IA (Claude) para auxiliar no raciocínio lógico, encontro de possíveis falhas e estilização (incluindo digitação dos emojis das categorias).

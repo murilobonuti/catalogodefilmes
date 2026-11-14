@@ -1,31 +1,97 @@
-/* Body */
- * {
-  font-family: Arial, sans-serif;
-  background: #252323;
-  color: #ffffff;
-  margin: 0;
-  padding: 10px;
- }
+/* Cores dos temas: o escuro é o padrão */
+:root {
+    --fundo: #252323;
+    --texto: #ffffff;
+    --campo: #252323;
+    --card: rgb(54, 54, 54);
+    --card-borda: transparent;
+    --borda: #585858;
+    --botao: #660000;
+    --botao-hover: rgb(185, 12, 12);
+    --botao-texto: #ffffff;
+    --botao-borda: #cccccc;
+    --fav: #3d3c3c;
+    --fav-texto: #ffffff;
+    --fav-ativo: #806500;
+    --fav-ativo-texto: #ffffff;
+    --rodape: #585858;
+    --rodape-texto: #ffffff;
+}
 
- /* Painel de filmes */
- main {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
-  gap: 20px;
+/* Tema claro: sobrescreve as variáveis acima */
+[data-tema="claro"] {
+    --fundo: #f4f4f4;
+    --texto: #222222;
+    --campo: #ffffff;
+    --card: #ffffff;
+    --card-borda: #d0d0d0;
+    --borda: #b5b5b5;
+    --botao: #2e7d32;
+    --botao-hover: #43a047;
+    --botao-texto: #ffffff;
+    --botao-borda: #1b5e20;
+    --fav: #e2e2e2;
+    --fav-texto: #222222;
+    --fav-ativo: #ffe08a;
+    --fav-ativo-texto: #222222;
+    --rodape: #dcdcdc;
+    --rodape-texto: #222222;
+}
+
+/* Body */
+* {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 10px;
+}
+
+body {
+    background: var(--fundo);
+    color: var(--texto);
+    transition: background 0.3s, color 0.3s;
+}
+
+/* Campos de formulário (não herdam cor e fundo do body por padrão) */
+input, select, textarea {
+    background: var(--campo);
+    color: var(--texto);
+}
+
+/* Painel de filmes */
+main {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+    gap: 20px;
 }
 
 /* Cartão do Filme */
- .card {
-  background: rgb(54, 54, 54);
-  border-radius: 8px;
-  overflow: hidden;
+.card {
+    background: var(--card);
+    border: 1px solid var(--card-borda);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+/* Cores compartilhadas por todos os botões principais */
+#btn-pesquisar,
+#cadastrar-filme,
+#btn-tema,
+.btn-remover {
+    background-color: var(--botao);
+    color: var(--botao-texto);
+    border: 1px solid var(--botao-borda);
+}
+
+/* Botões principais (mouse em cima) */
+#btn-pesquisar:hover,
+#cadastrar-filme:hover,
+#btn-tema:hover,
+.btn-remover:hover {
+    background-color: var(--botao-hover);
 }
 
 /* Botão de Pesquisa */
 #btn-pesquisar {
-    background-color: #660000;
-    color: #ffffff;
-    border: 1px solid #ccc;
     border-radius: 4px;
     padding: 5px;
     transition: 0.5s;
@@ -33,15 +99,19 @@
     height: 40px;
 }
 
-/* Botão de Pesquisa (mouse em cima) \*/
-#btn-pesquisar:hover {
-    background-color: rgb(185, 12, 12);
+/* Botão de trocar tema */
+#btn-tema {
+    border-radius: 4px;
+    padding: 5px;
+    transition: 0.5s;
+    height: 40px;
+    cursor: pointer;
 }
 
 /* Inputs de texto */
 input[type="text"] {
     padding: 5px;
-    border: 1px solid #585858;
+    border: 1px solid var(--borda);
     border-radius: 4px;
     width: 350px;
     height: 30px;
@@ -50,15 +120,15 @@ input[type="text"] {
 }
 
 /* Input específico do nome do filme */
- #nome-filme {
+#nome-filme {
     width: 200px;
     font-size: 14px;
 }
 
 /* Caixa numérica de duração */
- #duracao-filme {
+#duracao-filme {
     padding: 5px;
-    border: 1px solid #585858;
+    border: 1px solid var(--borda);
     border-radius: 4px;
     width: 150px;
     height: 30px;
@@ -69,7 +139,7 @@ input[type="text"] {
 /* Select da categoria */
 #categoria-filme {
     padding: 5px;
-    border: 1px solid #585858;
+    border: 1px solid var(--borda);
     border-radius: 4px;
     width: 200px;
     height: 70px;
@@ -79,9 +149,6 @@ input[type="text"] {
 
 /* Botão de Cadastro */
 #cadastrar-filme {
-    background-color: #660000;
-    color: #ffffff;
-    border: 1px solid #ccc;
     border-radius: 4px;
     padding: 5px;
     transition: 0.5s;
@@ -91,8 +158,8 @@ input[type="text"] {
 
 /* Botão de favoritar Filmes */
 .btn-favorito {
-    background-color: #3d3c3c;
-    color: white;
+    background-color: var(--fav);
+    color: var(--fav-texto);
     height: 60px;
     width: 100px;
     border-radius: 12px;
@@ -114,7 +181,7 @@ input[type="text"] {
 /* Textarea da descrição */
 #form-cadastro textarea {
     padding: 5px;
-    border: 1px solid #585858;
+    border: 1px solid var(--borda);
     border-radius: 4px;
     margin-left: 10px;
     font-size: 14px;
@@ -123,43 +190,37 @@ input[type="text"] {
     resize: both;
 }
 
-/* Botão ed favorito (Favoritado) */
+/* Botão de favorito (Favoritado) */
 .btn-favorito.ativo {
-    background-color: #806500;
+    background-color: var(--fav-ativo);
+    color: var(--fav-ativo-texto);
     border: 2px solid gold;
 }
 
- #footer {
-    background-color: #585858;
+/* Rodapé */
+#footer {
+    background-color: var(--rodape);
+    color: var(--rodape-texto);
     margin-top: 50px;
     text-align: center;
-    padding: 30px, 0px;
- }
+    padding: 30px 0;
+}
 
- .final {
-    background-color: #585858
- }
-
- .btn-remover {
+/* Botão de remover */
+.btn-remover {
     margin-left: 10px;
-    background-color: #660000;
-    color: white;
     height: 60px;
     width: 100px;
     border-radius: 12px;
- }
-
- #btn-remover:hover {
-    background-color: rgb(185, 12, 12);
 }
 
- .poster {
+.poster {
     overflow: hidden;
- }
+}
 
- .capa {
+.capa {
     width: 375px;
     height: 575px;
     object-fit: cover;
     display: block;
- }
+}
